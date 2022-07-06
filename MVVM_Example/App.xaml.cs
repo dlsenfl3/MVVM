@@ -18,7 +18,7 @@ namespace MVVM_Example
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new FirstViewModel()
+                DataContext = new MainViewModel()
             };
             MainWindow.Show();
 
