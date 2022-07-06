@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <views:FirstView DataContext="{Binding CurrentViewModel}"/>
+        <!--<views:FirstView DataContext="{Binding FirstViewModel}"/>-->
+        <views:FirstView />
     </Grid>
 </Window>
