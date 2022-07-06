@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_Example.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace MVVM_Example.ViewModels
 {
     public class FirstViewModel : ViewModelBase
     {
-        private string _userName = "insukim";
+        private string _userName;
 
         public string UserName
         {
@@ -17,7 +18,8 @@ namespace MVVM_Example.ViewModels
             set
             {
                 _userName = value;
-                OnPropertyChanged(nameof(UserName));
+                OnPropertyChanged();
+                //OnPropertyChanged(nameof(UserInformation));
             }
         }
 
@@ -29,17 +31,23 @@ namespace MVVM_Example.ViewModels
             set
             {
                 _email = value;
-                OnPropertyChanged(nameof(Email));
+                OnPropertyChanged();
+                //OnPropertyChanged(nameof(UserInformation));
             }
         }
 
         public string UserInformation => $"{UserName} : {Email}";
 
-        public ICommand DisplayInformation { get; set; }
+        public ICommand DisplayInformationCommand { get; set; }
 
         public FirstViewModel()
         {
-            //DisplayInformation = new 
+            DisplayInformationCommand = new FirstViewCommand(this);
+        }
+
+        public void OnUserInformationChanged()
+        {
+            OnPropertyChanged(nameof(UserInformation));
         }
     }
 }

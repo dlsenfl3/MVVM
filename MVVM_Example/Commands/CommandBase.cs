@@ -11,14 +11,15 @@ namespace MVVM_Example.Commands
     {
         public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object? parameter)
+        public virtual bool CanExecute(object? parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
+        public abstract void Execute(object? parameter);
 
-        public void Execute(object? parameter)
+        protected void OnCanExecuteChanged()
         {
-            throw new NotImplementedException();
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

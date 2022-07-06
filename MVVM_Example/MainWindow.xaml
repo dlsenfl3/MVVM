@@ -7,8 +7,9 @@
         xmlns:views="clr-namespace:MVVM_Example.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="20 10">
         <!--<views:FirstView DataContext="{Binding FirstViewModel}"/>-->
         <views:FirstView />
+        <!--<views:SecondView />-->
     </Grid>
 </Window>
