@@ -1,4 +1,5 @@
-﻿using MVVM_Example.ViewModels;
+﻿using MVVM_Example.Stores;
+using MVVM_Example.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,11 +15,20 @@ namespace MVVM_Example
     /// </summary>
     public partial class App : Application
     {
+        private readonly NavigationStore _navigationStore;
+
+        public App()
+        {
+            _navigationStore = new NavigationStore();
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
+            _navigationStore.CurrentViewModel = new FirstViewModel(_navigationStore);
+
             MainWindow = new MainWindow()
             {
-                //DataContext = new MainViewModel()
+                DataContext = new MainViewModel(_navigationStore)
                 //DataContext = new FirstViewModel()
             };
             MainWindow.Show();

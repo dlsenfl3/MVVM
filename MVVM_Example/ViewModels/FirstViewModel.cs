@@ -1,4 +1,5 @@
 ﻿using MVVM_Example.Commands;
+using MVVM_Example.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,8 @@ namespace MVVM_Example.ViewModels
             get { return _userName; }
             set
             {
-                _userName = value;
-                OnPropertyChanged();
+                _userName = value;  //프로퍼티 변경시 
+                OnPropertyChanged();    //프로퍼티 변경반영
                 //OnPropertyChanged(nameof(UserInformation));
             }
         }
@@ -37,13 +38,16 @@ namespace MVVM_Example.ViewModels
         }
 
         public string UserInformation => $"{UserName} : {Email}";
-
+        
         public ICommand DisplayInformationCommand { get; set; }
+        public ICommand ConvertSecondViewCommand { get; set; }
 
-        public FirstViewModel()
+        public FirstViewModel(NavigationStore navigationStore)
         {
             DisplayInformationCommand = new FirstViewCommand(this);
+            ConvertSecondViewCommand = new MakeSecondViewCommand(navigationStore);
         }
+
 
         public void OnUserInformationChanged()
         {
