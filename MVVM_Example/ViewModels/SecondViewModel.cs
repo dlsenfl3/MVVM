@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVVM_Example.Commands;
+using MVVM_Example.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,10 +37,12 @@ namespace MVVM_Example.ViewModels
         public string UserInformation2 => $"{UserID} : {PhoneNumber}";
 
         public ICommand UserInformation2Command { get; set; }
+        public ICommand ConvertFirstViewCommand { get; set; }
 
-        public SecondViewModel()
+        public SecondViewModel(NavigationStore navigationStore)
         {
             //UserInformation2Command = new 
+            ConvertFirstViewCommand = new MakeFirstViewCommand(navigationStore);
         }
 
     }

@@ -5,11 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_Example"
         xmlns:views="clr-namespace:MVVM_Example.Views"
+        xmlns:viewModels="clr-namespace:MVVM_Example.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:FirstViewModel}">
+            <views:FirstView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SecondViewModel}">
+            <views:SecondView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <!--<Window.DataContext>
+        <viewModels:FirstViewModel/>
+    </Window.DataContext>-->
+    
     <Grid Margin="20 10">
         <!--<views:FirstView DataContext="{Binding FirstViewModel}"/>-->
-        <views:FirstView />
+        <!--<views:FirstView />-->
         <!--<views:SecondView />-->
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
