@@ -29,7 +29,6 @@ namespace MVVM_Example
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)
-                //DataContext = new FirstViewModel()
             };
             MainWindow.Show();
 

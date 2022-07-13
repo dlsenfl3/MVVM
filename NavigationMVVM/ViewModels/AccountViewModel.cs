@@ -11,7 +11,7 @@ namespace NavigationMVVM.ViewModels
 {
     public class AccountViewModel : ViewModelBase
     {
-        public string Name => "SingletonSean";
+        public string Username => "SingletonSean";
 
         public ICommand NavigateHomeCommand { get; }
 

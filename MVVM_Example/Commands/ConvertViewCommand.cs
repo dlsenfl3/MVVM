@@ -8,18 +8,21 @@ using System.Threading.Tasks;
 
 namespace MVVM_Example.Commands
 {
-    public class MakeSecondViewCommand : CommandBase
+    public class ConvertViewCommand<TViewModel> : CommandBase
+        where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
+        private readonly Func<TViewModel> _createViewModel;
 
-        public MakeSecondViewCommand(NavigationStore navigationStore)
+        public ConvertViewCommand(NavigationStore navigationStore, Func<TViewModel> createViewModel)
         {
             _navigationStore = navigationStore;
+            _createViewModel = createViewModel;
         }
 
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentViewModel = new SecondViewModel(_navigationStore);
+            _navigationStore.CurrentViewModel = _createViewModel();
         }
     }
 }

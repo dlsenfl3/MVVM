@@ -41,11 +41,15 @@ namespace MVVM_Example.ViewModels
         
         public ICommand DisplayInformationCommand { get; set; }
         public ICommand ConvertSecondViewCommand { get; set; }
+        public ICommand ConvertThirdViewCommand { get; set; }
+
+        
 
         public FirstViewModel(NavigationStore navigationStore)
         {
             DisplayInformationCommand = new FirstViewCommand(this);
-            ConvertSecondViewCommand = new MakeSecondViewCommand(navigationStore);
+            ConvertSecondViewCommand = new ConvertViewCommand<SecondViewModel>(navigationStore, () => new SecondViewModel(navigationStore));
+            ConvertThirdViewCommand = new ConvertViewCommand<ThirdViewModel>(navigationStore, () => new ThirdViewModel(navigationStore));
         }
 
 

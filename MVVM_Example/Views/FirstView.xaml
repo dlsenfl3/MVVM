@@ -59,12 +59,18 @@
             <Label Content="{Binding UserInformation}"/>
         </Grid>
 
-        <Grid Grid.Row="5" Margin="0 50 0 0">
+        <StackPanel Grid.Row="5" Margin="0 50 0 0">
+        <Grid >
             <Button 
                 Content="Second View"
                 Command="{Binding ConvertSecondViewCommand}"/>
         </Grid>
-
+        <Grid >
+            <Button 
+                Content="Third View"
+                Command="{Binding ConvertThirdViewCommand}"/>
+        </Grid>
+        </StackPanel>
     </Grid>
 
 </UserControl>

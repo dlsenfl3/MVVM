@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type viewModels:SecondViewModel}">
             <views:SecondView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ThirdViewModel}">
+            <views:ThirdView/>
+        </DataTemplate>
     </Window.Resources>
     
     <!--<Window.DataContext>

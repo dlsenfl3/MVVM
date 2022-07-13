@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -11,9 +12,9 @@ namespace MVVM_Example.ViewModels
 {
     public class SecondViewModel : ViewModelBase
     {
-        private int _userID;
+        private string _userID;
 
-        public int UserID
+        public string UserID
         {
             get { return _userID; }
             set
@@ -38,12 +39,38 @@ namespace MVVM_Example.ViewModels
 
         public ICommand UserInformation2Command { get; set; }
         public ICommand ConvertFirstViewCommand { get; set; }
+        //public ICommand TextBoxPreviewTextInput { get; set; }
 
         public SecondViewModel(NavigationStore navigationStore)
         {
-            //UserInformation2Command = new 
-            ConvertFirstViewCommand = new MakeFirstViewCommand(navigationStore);
+            UserInformation2Command = new DelegateCommand(OnUserInformationChanged);
+            ConvertFirstViewCommand = new ConvertViewCommand<FirstViewModel>(navigationStore, () => new FirstViewModel(navigationStore));
+            //TextBoxPreviewTextInput = new DelegateCommand(TextBox_PreviewTextInput);
         }
+
+        public void OnUserInformationChanged(object obj)
+        {
+            OnPropertyChanged(nameof(UserInformation2));
+        }
+
+
+        public void TextBoxPreviewInput(object obj, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        public bool IsValidation(object value)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            var isValidation = regex.IsMatch(value.ToString());
+            if (isValidation)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }
