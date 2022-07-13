@@ -29,6 +29,6 @@
             Padding="5 2"
             HorizontalAlignment="Left"
             Command="{Binding NavigateAccountCommand}"
-            Content="Start" />
+            Content="Home" />
     </Grid>
 </UserControl>
