@@ -19,7 +19,7 @@ namespace MVVM_Example.Commands
 
         protected void OnCanExecuteChanged()
         {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);//CanExecute리턴값으로 인한 변경된 값 반영하기위한 CanExecuteChanged호출 
+            CanExecuteChanged?.Invoke(this, new EventArgs());//CanExecute리턴값으로 인한 변경된 값 반영하기위한 CanExecuteChanged호출 
         }
     }
 }

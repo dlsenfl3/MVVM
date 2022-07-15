@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_Example.Views"
              xmlns:viewModels="clr-namespace:MVVM_Example.ViewModels"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <!--DataContext Code IntelliSense-->
@@ -36,7 +38,14 @@
             <TextBox 
                 Grid.Row="1"
                 Margin="0 5 0 0 "
-                Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="NumberValidationTextBox"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
+            </TextBox>
             <!--UpdateSourceTrigger 프로퍼티 변하는 순간 바로바로 바인딩-->
         </Grid>
 
@@ -49,12 +58,33 @@
             <TextBlock Grid.Column="0" Text="Email" Padding="2"/>
             <TextBox Grid.Column="1" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Padding="2"/>
         </Grid>
-        <Grid Grid.Row="3" Margin="0 25 0 0">
+
+        <StackPanel Grid.Row="3" Margin="0 25 0 0">
+        <Grid>
             <Button 
                 Content="Click"
                 Command="{Binding DisplayInformationCommand}"/>
-        </Grid>
-
+            </Grid>
+            <Grid Margin="0 25 0 0">
+                <Button Content="InvokeCommandAction">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseWheel">
+                        <i:InvokeCommandAction Command="{Binding WheelCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            </Grid>
+            <Grid Margin="0 25 0 0">
+                <Button Content="CallMethodAction">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseWheel">
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="OnMouseWheel"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+        </StackPanel>
+        
         <Grid Grid.Row="4" Margin="0 25 0 0">
             <Label Content="{Binding UserInformation}"/>
         </Grid>

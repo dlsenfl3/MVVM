@@ -6,30 +6,26 @@ using System.Threading.Tasks;
 
 namespace MVVM_Example.Commands
 {
-    public class RelayCommand : CommandBase
+    public class RelayCommand<T> : CommandBase
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private readonly Predicate<T> _canExecute;
+        private readonly Action<T> _execute;
 
-        public RelayCommand(Action<object> execute) : this(execute, null) { }
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action<T> execute) : this(execute, null) { }
+        public RelayCommand(Action<T> execute, Predicate<T> canExecute)
         {
-            if (execute == null)
-            {
-                throw new ArgumentException("execute");
-            }
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException("execute");
             _canExecute = canExecute;
         }
 
         public bool CanExecute(object? parameter)
         {
-            return _canExecute == null || _canExecute(parameter);
+            return _canExecute == null || _canExecute((T)parameter);
         }
 
         public override void Execute(object? parameter)
         {
-            _execute(parameter);
+            _execute((T)parameter);
         }
     }
 }

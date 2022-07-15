@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -37,25 +38,54 @@ namespace MVVM_Example.ViewModels
             }
         }
 
+        //private string _userInformation;
+
+        //public string UserInformation
+        //{
+        //    get { return _userInformation; }
+        //    set { _userInformation = value; }
+        //}
+
         public string UserInformation => $"{UserName} : {Email}";
-        
+
         public ICommand DisplayInformationCommand { get; set; }
         public ICommand ConvertSecondViewCommand { get; set; }
         public ICommand ConvertThirdViewCommand { get; set; }
+        public ICommand WheelCommand { get; set; }
 
         
 
         public FirstViewModel(NavigationStore navigationStore)
         {
-            DisplayInformationCommand = new FirstViewCommand(this);
+            //DisplayInformationCommand = new FirstViewCommand(this);
             ConvertSecondViewCommand = new ConvertViewCommand<SecondViewModel>(navigationStore, () => new SecondViewModel(navigationStore));
             ConvertThirdViewCommand = new ConvertViewCommand<ThirdViewModel>(navigationStore, () => new ThirdViewModel(navigationStore));
+            DisplayInformationCommand = new RelayCommand<object>(OnUserInformationChanged);
+            DisplayInformationCommand = new RelayCommand<object>(OnUserInformationChanged);
+
+            //WheelCommand = new RelayCommand<object>(OnMouseWheel);
         }
 
 
-        public void OnUserInformationChanged()
+
+
+        public void OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            //UserInformation = $"{e.Delta}";
+            OnPropertyChanged(nameof(UserInformation));
+        }
+
+        public void OnUserInformationChanged(object sender)
         {
             OnPropertyChanged(nameof(UserInformation));
         }
+
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+
     }
 }

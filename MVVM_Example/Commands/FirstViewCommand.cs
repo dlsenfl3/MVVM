@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MVVM_Example.Commands
 {
@@ -42,7 +44,7 @@ namespace MVVM_Example.Commands
         /// <param name="parameter"></param>
         public override void Execute(object? parameter)
         {
-            _firstViewModel.OnUserInformationChanged();
+            //_firstViewModel.OnUserInformationChanged(parameter);
             //Debug.WriteLine("DisplayInformation");
         }
     }

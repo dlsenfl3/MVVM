@@ -24,5 +24,6 @@ namespace MVVM_Example.Views
         {
             InitializeComponent();
         }
+
     }
 }
