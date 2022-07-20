@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM_Example", "MVVM_Example\MVVM_Example.csproj", "{A73BA4BB-0A0A-4495-AEB3-6890D96FF85D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationMVVM", "NavigationMVVM\NavigationMVVM.csproj", "{775B3750-81F4-4A0E-93DA-737C5E237691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavigationMVVM", "NavigationMVVM\NavigationMVVM.csproj", "{775B3750-81F4-4A0E-93DA-737C5E237691}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_Basics", "MVVM_Basics\MVVM_Basics.csproj", "{260E42CB-7743-40A2-BE2A-646D0251EFAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{775B3750-81F4-4A0E-93DA-737C5E237691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{775B3750-81F4-4A0E-93DA-737C5E237691}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{775B3750-81F4-4A0E-93DA-737C5E237691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{260E42CB-7743-40A2-BE2A-646D0251EFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260E42CB-7743-40A2-BE2A-646D0251EFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260E42CB-7743-40A2-BE2A-646D0251EFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260E42CB-7743-40A2-BE2A-646D0251EFAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
