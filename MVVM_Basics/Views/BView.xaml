@@ -25,7 +25,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
 
@@ -78,27 +77,31 @@
                      Padding="2"/>
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Label 
                 Height="40"
                 FontSize="20"
                 Content="{Binding UserInformation}"/>
         </Grid>
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="3">
             <StackPanel>
                 <Button Content="Display UserInfo" 
                     Margin="5"
-                    Height="30"
+                    Height="20"
                     Command="{Binding DisplayUserInformationCommand}"/>
                 <Button Content="Button B"
                     Margin="5"
-                    Height="30"
+                    Height="20"
                     Command="{Binding DisplayUserInformation2Command}"/>
                 <Button Content="Back to the AView"
                     Margin="5"
-                    Height="30"
+                    Height="20"
                     Command="{Binding ConvertAViewCommand}"/>
+                <Button Content="Sign Up"
+                    Margin="5"
+                    Height="20"
+                    Command="{Binding SignUpCommand}"/>
             </StackPanel>
         </Grid>
 

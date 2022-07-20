@@ -1,4 +1,5 @@
 ﻿using MVVM_Basics.Commands;
+using MVVM_Basics.Models;
 using MVVM_Basics.Stores;
 using System;
 using System.Collections.Generic;
@@ -63,32 +64,38 @@ namespace MVVM_Basics.ViewModels
         private RelayCommand _displayUserInformationCommand;
         public RelayCommand DisplayUserInformationCommand =>
             _displayUserInformationCommand ?? (_displayUserInformationCommand = new RelayCommand(DisplayUserInfo));
-
-        public void DisplayUserInfo2(object obj)
-        {
-            UserInformation = $"Name:{UserName} PhoneNum: {PhoneNumber} Email:{Email}";
-        }
-
+        //private
         private void DisplayUserInfo(object obj)
         {
             UserInformation = $"Name:{UserName} PhoneNum: {PhoneNumber} Email:{Email}";
         }
-
+        
         public ICommand DisplayUserInformation2Command { get; }
         public ICommand ConvertAViewCommand { get; }
+        public ICommand SignUpCommand { get; }
 
+
+        private readonly UserList _userList;
         public BViewModel(NavigationStore navigationStore)
         {
+            _userList = new UserList();
             DisplayUserInformation2Command = new DisPlayUserInfoCommand(this);
             ConvertAViewCommand = new NavigateCommand<AViewModel>(navigationStore, () => new AViewModel(navigationStore));
+            SignUpCommand = new SignUpCommand(this, _userList);
         }
-
 
         public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        //public
+        public void DisplayUserInfo2(object obj)
+        {
+            UserInformation = $"Name:{UserName} PhoneNum: {PhoneNumber} Email:{Email}";
+        }
+
 
     }
 }
