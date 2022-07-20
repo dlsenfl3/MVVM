@@ -40,11 +40,13 @@
             </Grid.ColumnDefinitions>
                 <Button Grid.Column="1"
                         Content="BView"
-                        FontSize="30">
+                        FontSize="30"
+                        Command="{Binding ConvertBViewCommand}">
                 </Button>
                 <Button Grid.Column="3"
                         Content="CView"
-                        FontSize="30">
+                        FontSize="30"
+                        Command="{Binding ConvertCViewCommand}">
                 </Button>
             </Grid>
         </Grid>

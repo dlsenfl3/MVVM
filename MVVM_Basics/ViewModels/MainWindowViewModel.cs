@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_Basics.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,18 @@ namespace MVVM_Basics.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public ViewModelBase CurrentViewModel { get; set; }
-        public MainWindowViewModel()
+        private readonly NavigationStore _navigationStore;
+        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+
+        public MainWindowViewModel(NavigationStore navigationStore)
         {
-            CurrentViewModel = new AViewModel();
+            _navigationStore = navigationStore;
+            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        }
+
+        private void OnCurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }
