@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MVVM_Basics.Models;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,15 @@ namespace MVVM_Basics.DataBase
 {
     public class BasicDbContext : DbContext
     {
-        private const string Connection = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Basic;Integrated Security=True;");
+        //private const string CONNECTION_STRING = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Basic;Integrated Security=True;");
+        IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var builder = new ConfigurationB
-            optionsBuilder.UseSqlServer(Connection);
+            //optionsBuilder.UseSqlServer(CONNECTION_STRING);
+            optionsBuilder.UseSqlServer(config.GetConnectionString("BasicDb"));
         }
     }
 }
