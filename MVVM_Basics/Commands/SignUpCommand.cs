@@ -1,4 +1,5 @@
-﻿using MVVM_Basics.Models;
+﻿using MVVM_Basics.DataBase;
+using MVVM_Basics.Models;
 using MVVM_Basics.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MVVM_Basics.Commands
     {
         private readonly BViewModel _bViewModel;
         private readonly UserList _userList;
+        BasicDbContext db = new BasicDbContext();
 
         public SignUpCommand(BViewModel bViewModel, UserList userList)
         {
@@ -35,10 +37,17 @@ namespace MVVM_Basics.Commands
         }
         public override void Execute(object? parameter)
         {
-            User user = new User(
-                _bViewModel.UserName,
-                _bViewModel.PhoneNumber,
-                _bViewModel.Email);
+            User user = new User{
+                //_bViewModel.UserName,
+                //_bViewModel.PhoneNumber,
+                //_bViewModel.Email
+                UserName = _bViewModel.UserName,
+                Email = _bViewModel.Email,
+                PhoneNumber = _bViewModel.PhoneNumber,
+            };
+
+            db.Users.Add(user);
+            db.SaveChanges();
             
             _userList.AddUser(user);
         }
