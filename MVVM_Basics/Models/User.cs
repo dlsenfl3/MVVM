@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MVVM_Basics.Models
 {
-    public class User
+    public class User : DomainObject
     {
-        [Key]
+        //[Key]
         public string UserName { get; set; }
         public int PhoneNumber { get; set; }
         public string Email { get; set; }

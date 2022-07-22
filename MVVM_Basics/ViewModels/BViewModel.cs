@@ -76,6 +76,7 @@ namespace MVVM_Basics.ViewModels
 
 
         private readonly UserList _userList;
+
         public BViewModel(NavigationStore navigationStore)
         {
             _userList = new UserList();

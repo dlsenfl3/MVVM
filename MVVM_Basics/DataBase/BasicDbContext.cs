@@ -12,15 +12,20 @@ namespace MVVM_Basics.DataBase
 {
     public class BasicDbContext : DbContext
     {
-        //private const string CONNECTION_STRING = (@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Basic;Integrated Security=True;");
-        IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
+        //IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         public DbSet<User> Users { get; set; }
+        public BasicDbContext(DbContextOptions options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseSqlServer(CONNECTION_STRING);
-            optionsBuilder.UseSqlServer(config.GetConnectionString("BasicDb"));
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<User>().OwnsOne(a => a.UserName);
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(config.GetConnectionString("BasicDb"));
+        //}
     }
 }
